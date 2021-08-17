@@ -1,0 +1,41 @@
+{%extends 'base.html' %}
+{% load static %}
+{%block content  %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" style="color:white" href="/admin/">Welcome</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" style="color:white;margin-left: 60px" href="#">Contact</a>
+        <a class="nav-link" style="color:white;margin-left: 60px" href="/deliveryboy/">DeliveryBoy</a>
+           <a class="btn btn-danger" style="margin-left: 1030px"  href="/loginuser/">Login</a>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+{%for message in messages %}
+<p style="text-align: center">{{message}}</p>
+{%endfor%}
+
+<!--python manage.py collectstatic-->
+<div class="container-fluid" style="position:relative;height:900px;background-size:cover;background-image:url({%static 'img/pizzahomepage.jpg'%})">
+
+    <div style="position:absolute; top: 50px; right: 20px; width:500px; height:350px;  background-color:orange; padding: 40px" class="container">
+        <h1 style="text-align: center; color:white">Sign Up!</h1>
+
+        <form method="post" action="/signupuser/">
+            {%csrf_token%}
+            <input class="form-control" placeholder="username" type="text" name="username" style="margin-bottom: 10px">
+            <input class="form-control" placeholder="password" type="password" name="password" style="margin-bottom: 10px">
+            <input class= "form-control" placeholder="phoneno" type="text" name="phoneno" maxlength="10" title="Enter 10 digit number" style="margin-bottom: 10px"pattern="[1-9]{1}[0-9]{9}">
+            <input style="display: block; margin: auto;margin-top: 20px" class= "btn btn-success" type="submit" name="">
+        </form>
+    </div>
+</div>
+{% endblock %}
